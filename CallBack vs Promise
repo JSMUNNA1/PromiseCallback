@@ -39,4 +39,28 @@ order(function(orderErr, orderResult) {
     });
   }
 });
-   ///promise 
+   //vs 
+
+//promise
+
+let promise=new Promise((res,rej)=>{
+     res("Order start")
+})
+ promise.then(order)
+ .then(payment)
+ .then(paymentSlip)
+ .finally(()=>console.log("thankyou"))
+
+//console.log(data)
+function order(data){
+    console.log("order done"+data);
+    return 'order'
+}
+function payment(data){
+   console.log(data);
+   return 'payment done'
+}
+function paymentSlip(data){
+   console.log(data);
+   return 'payment slip Generated'
+}
