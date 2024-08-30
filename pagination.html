@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="box"></div>
+
+    <button>prev</button>
+    <button id="next">next</button>
+    <script>
+      function* pagiFun(array, nextSlid) {
+        for (let i = 0; i < array.length; i += nextSlid) {
+          yield array.slice(i, nextSlid + i);
+        }
+      }
+      const arr = Array.from({ length: 100 }, (_, i) => `item ${i}`);
+      const paginationcall = pagiFun(arr, 10);
+      let res = paginationcall.next();
+
+      let box = document.querySelector("#box");
+      let list = document.createElement("ul");
+      box.appendChild(list);
+
+      function display(res) {
+        box.innerHTML = `<ul>${res.value
+          .map((it) => `<li>${it}</li>`)
+          .join("")}`;
+      }
+      display(res);
+      document.querySelector("#next").addEventListener("click", () => {
+        res = paginationcall.next();
+        if (!res.done) {
+          display(res);
+        } else {
+          alert("No more page");
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button id="check">chack</button>
+    <button id="changeBg">chageBg</button>
+
+    <script>
+      let chack = document.querySelector("#check");
+      let chageBg = document.querySelector("#changeBg");
+      let color = "red";
+      chageBg.addEventListener("click", () => {
+        color = color === "red" ? "blue" : "red";
+        document.body.style.background = color;
+      });
+      chack.addEventListener("click", () => {
+        for (let i = 0; i < 10000000000; i++) {}
+        alert("complete");
+      });
+    </script>
+  </body>
+</html>
